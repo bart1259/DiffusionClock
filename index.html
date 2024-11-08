@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Diffusion Clock</title>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+                background-color: #111111;
+            }
+
+            .wrapper {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+            img {
+                height: 100%;
+                aspect-ratio: 1/1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <img src="" id="timeImage" />
+        </div>
+
+        <script>
+            window.onload = (() => {
+                setInterval(() => {
+                    // Get hour and minute
+                    const dateTime = new Date()
+                    let hour = (dateTime.getHours() % 12).toString()
+                    let minute = dateTime.getMinutes().toString()
+                    if (minute.length == 1) {
+                        minute = "0" + minute
+                    }
+                    console.log(`${hour}:${minute}`)
+
+                    document.getElementById("timeImage").src = `images/${hour}_${minute}.png`
+
+                }, 100)
+            })
+        </script>
+    </body>
+</html>
