@@ -5,7 +5,22 @@
             * {
                 margin: 0px;
                 padding: 0px;
-                background-color: #111111;
+            }
+
+            .background {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background-repeat: repeat;
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+
+                z-index: -1;
+
+                filter: blur(20px) brightness(10%);
+                -webkit-filter: blur(20px);
+                transform: scale(1.1);
             }
 
             .wrapper {
@@ -17,13 +32,24 @@
                 justify-content: center;
             }
 
-            img {
-                height: 100%;
-                aspect-ratio: 1/1;
+            /* Check for vertical */
+            @media screen and (orientation:portrait) {
+                #timeImage {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                }
+            }
+            
+            @media screen and (orientation:landscape) {
+                #timeImage {
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                }
             }
         </style>
     </head>
     <body>
+        <div class="background"></div>
         <div class="wrapper">
             <img src="" id="timeImage" />
         </div>
@@ -40,7 +66,9 @@
                     }
                     console.log(`${hour}:${minute}`)
 
-                    document.getElementById("timeImage").src = `images/${hour}_${minute}.png`
+                    let url = `images/${hour}_${minute}.png`
+                    document.getElementById("timeImage").src = url
+                    document.getElementsByClassName("background")[0].style["background-image"] = `url("${url}")`
 
                 }, 100)
             })
