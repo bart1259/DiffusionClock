@@ -60,6 +60,9 @@
                     // Get hour and minute
                     const dateTime = new Date()
                     let hour = (dateTime.getHours() % 12).toString()
+                    if (hour == "0") {
+                        hour = "12"
+                    }
                     let minute = dateTime.getMinutes().toString()
                     if (minute.length == 1) {
                         minute = "0" + minute
